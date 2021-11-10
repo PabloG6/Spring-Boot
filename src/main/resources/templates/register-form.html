@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Employees</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body>
+<div class="container">
+    <h2>Add Employee</h2>
+    <hr/>
+    <form th:action="@{/register2}" th:object="${user}" method="post">
+        <input type="text" th:field="*{firstName}" placeholder="Enter first name" class="form-control col-4 mb-4"/>
+        <input type="text" th:field="*{lastName}" placeholder="Enter last name" class="form-control col-4 mb-4"/>
+        <input type="text" th:field="*{password}" placeholder="Enter password" class="form-control col-4 mb-4"/>
+        <input type="text" th:field="*{email}" placeholder="Enter email" class="form-control col-4 mb-4"/>
+
+        <input type="hidden" th:field="*{id}"/>
+        <button style="color: white;" class="btn btn-primary" type="submit">Register</button>
+    </form>
+    <hr />
+    <a style="color: white;" class="btn btn-secondary" th:href="@{/login}">Login</a>
+</div>
+</body>
+</html>
