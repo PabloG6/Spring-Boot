@@ -35,13 +35,21 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public Post savePostToUSer(Long id, Post post){
-        List<Post> posts = new ArrayList<>();
-        User user = userRepository.getById(id);
-        Post newPost = postRepository.save(post);
-        posts.add(newPost);
+        if(id != null){
+            List<Post> posts = new ArrayList<>();
+            User user = userRepository.getById(id);
 
-        user.setPosts(posts);
-        return newPost;
+            Post newPost = postRepository.save(post);
+            posts.add(newPost);
+
+            user.setPosts(posts);
+            userRepository.save(user);
+
+            return newPost;
+        }
+
+        return null;
+
     }
 
 

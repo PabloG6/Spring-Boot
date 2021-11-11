@@ -41,7 +41,7 @@ public class User {
     @NotEmpty
     private String email;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("user")
     private List<Post> posts = new ArrayList<>();
 
@@ -52,4 +52,17 @@ public class User {
     @UpdateTimestamp
     private Date uDate;
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", posts=" + posts +
+                ", cDate=" + cDate +
+                ", uDate=" + uDate +
+                '}';
+    }
 }

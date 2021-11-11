@@ -23,6 +23,18 @@ public class Post {
 
     private int likes = 0;
 
+    @Override
+    public String toString() {
+        return "Post{" +
+                "id=" + id +
+                ", text='" + text + '\'' +
+                ", likes=" + likes +
+                ", dislikes=" + dislikes +
+                ", user=" + user +
+                ", cDate=" + cDate +
+                ", uDate=" + uDate +
+                '}';
+    }
 
     private int dislikes = 0;
 
