@@ -44,8 +44,9 @@ public class UserController {
         return new ResponseEntity<>(newUser, HttpStatus.CREATED);
     }
 
-
-
-
-
+    @GetMapping("/api/find/{email}")
+    public ResponseEntity<User> findEmail(@PathVariable(value = "email") String email){
+        User users = userService.findByEmail(email);
+        return new ResponseEntity<>(users, HttpStatus.OK);
+    }
 }

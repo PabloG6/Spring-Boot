@@ -1,6 +1,7 @@
 package com.propfile.profile.controller;
 
 import com.propfile.profile.model.Post;
+import com.propfile.profile.repository.PostRepository;
 import com.propfile.profile.service.PostService;
 import com.propfile.profile.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,7 @@ public class PostController {
 
     private final PostService postService;
     private final UserService userService;
+    private final PostRepository postRepository;
 
 
     @GetMapping("/api/users/posts")
@@ -36,17 +38,13 @@ public class PostController {
         }), HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/api/users/{userid}/posts/{postid}")
-    public Optional<ResponseEntity<Object>> deleteCourse(@PathVariable(value = "userid") Long userid,
-                                                         @PathVariable(value = "postid") Long postid) {
-        return postService.findByIdAndUserId(postid, userid).map(course -> {
-                postService.deletePostById(postid);
+    @DeleteMapping("/api/users/{userId}/posts/{id}")
+    public ResponseEntity<?> datePoster(@PathVariable(value = "id") Long id,
+                                       @PathVariable(value = "userId")Long userId){
+        postService.deletePost(id, userId);
         return ResponseEntity.ok().build();
-        });
     }
 
-    @DeleteMapping("/api/post/{id}")
-    public void delete(@PathVariable(value = "id") Long id){
-        postService.deletePostById(id);
-    }
+
+
 }

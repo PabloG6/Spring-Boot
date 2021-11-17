@@ -16,6 +16,7 @@ public interface PostService {
 
     void deletePostById(Long id);
 
-    Optional<Post> findByIdAndUserId(Long id, Long userid);
+    void deletePost(Long id, Long userId);
 
+    void del2(Long id);
 }
