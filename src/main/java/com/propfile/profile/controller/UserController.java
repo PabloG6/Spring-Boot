@@ -3,6 +3,7 @@ package com.propfile.profile.controller;
 import com.propfile.profile.model.Post;
 import com.propfile.profile.model.User;
 import com.propfile.profile.repository.PostRepository;
+import com.propfile.profile.repository.UserRepository;
 import com.propfile.profile.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,14 +18,14 @@ import java.util.Optional;
 
 @Controller
 @RestController
-@Slf4j
+
 @RequiredArgsConstructor
 @CrossOrigin("http://localhost:8081/")
 public class UserController {
 
     @Autowired
     private final UserService userService;
-    private final PostRepository postRepository;
+    private final UserRepository userRepository;
 
     @GetMapping("/api/users")
     public ResponseEntity<List<User>> apiFindAllUser(){
@@ -40,7 +41,7 @@ public class UserController {
 
     @PostMapping("/api/user")
     public ResponseEntity<User> addUser(@RequestBody User user){
-        User newUser = userService.saveUser(user);
+        User newUser = userRepository.save(user);
         return new ResponseEntity<>(newUser, HttpStatus.CREATED);
     }
 
